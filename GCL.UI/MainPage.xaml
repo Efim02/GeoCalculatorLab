@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GCL.UI.MainPage"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:viewModels="clr-namespace:GCL.UI.ViewModels;assembly=GCL.UI"
+             d:DataContext="{d:DesignInstance Type=viewModels:CalculatorVM, IsDesignTimeCreatable=False}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Entry" TargetType="Entry">
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontFamily" Value="Verdana" />
+                <Setter Property="BackgroundColor" Value="Lavender" />
+                <Setter Property="Text" Value="LightSkyBlue" />
+                <Setter Property="TextColor" Value="DarkSlateGray" />
+                <Setter Property="Keyboard" Value="Numeric" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackLayout VerticalOptions="Center">
+            <Label Text="Calculator" HorizontalOptions="CenterAndExpand" FontSize="40" FontAttributes="Bold" 
+                   TextColor="DodgerBlue" Margin="40">
+            </Label>
+            <Entry Text="{Binding FirstValue}" Style="{StaticResource Entry}"/>
+            <Entry Text="{Binding SecondValue}" Style="{StaticResource Entry}"/>
+            <Label Text="{Binding SumText}" HorizontalTextAlignment="End" FontSize="20" FontAttributes="Italic" TextColor="White"/>
+            <Button Text="Сложить два числа" Command="{Binding SumCommand}" CommandParameter="{Binding}" />
+        </StackLayout>
+        <StackLayout Grid.Row="2" x:Name="StackLayout">
+            <Button Text="Добавить кнопку" Clicked="Button_OnClicked"/>
+        </StackLayout>
+        <Label Grid.Row="1" Text="ZhabinEM 8K93"  HorizontalOptions="Center" VerticalOptions="EndAndExpand" FontSize="20" 
+               TextColor="Orange" />
+    </Grid>
+</ContentPage>
