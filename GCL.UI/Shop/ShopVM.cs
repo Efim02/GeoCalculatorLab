@@ -21,13 +21,19 @@
         public ShopVM()
         {
             ProductVms = new ObservableCollection<ShopProductVM>();
-            CreateCustomer = new CreateCustomerCommand();
+            CreateCustomerCommand = new CreateCustomerCommand();
+            CreateProductCommand = new CreateProductCommand();
         }
 
         /// <summary>
         /// Команда создать покупателя.
         /// </summary>
-        public ICommand CreateCustomer { get; }
+        public ICommand CreateCustomerCommand { get; }
+
+        /// <summary>
+        /// Команда создать покупателя.
+        /// </summary>
+        public ICommand CreateProductCommand { get; }
 
         /// <summary>
         /// Текущий покупатель.
@@ -76,21 +82,29 @@
                     return;
 
                 _selectedProductVM = value;
-
-                if (CurrentCustomerVM.Money >= SelectedProductVM.Price)
-                {
-                    Message = $"{CurrentCustomerVM.Name} приобрел {SelectedProductVM.Title}.";
-                    CurrentCustomerVM.Money -= SelectedProductVM.Price;
-                    ProductVms.Remove(SelectedProductVM);
-                }
-                else
-                {
-                    Message = $"{CurrentCustomerVM.Name} не хватает " +
-                              $"{SelectedProductVM.Price - CurrentCustomerVM.Money} приобрести продукт.";
-                }
-
+                BuyProduct();
                 OnPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Купить выбранный продукт.
+        /// </summary>
+        private void BuyProduct()
+        {
+            if (CurrentCustomerVM == null)
+                return;
+
+            if (CurrentCustomerVM.Money >= SelectedProductVM.Price)
+            {
+                Message = $"{CurrentCustomerVM.Name} приобрел {SelectedProductVM.Title}.";
+                CurrentCustomerVM.Money -= SelectedProductVM.Price;
+                ProductVms.Remove(SelectedProductVM);
+                return;
+            }
+
+            Message = $"{CurrentCustomerVM.Name} не хватает " +
+                      $"{SelectedProductVM.Price - CurrentCustomerVM.Money} приобрести продукт.";
         }
     }
 }

@@ -7,6 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:shop="clr-namespace:GCL.UI.Shop;assembly=GCL.UI"
              mc:Ignorable="d"
+             x:Name="Page"
              d:DataContext="{d:DesignInstance Type=shop:ShopVM, IsDesignTimeCreatable=False}">
     <ContentPage.Resources>
         <Style x:Key="ListLabel" TargetType="Label">
@@ -23,7 +24,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackLayout>
-            <Button Text="Сгенерировать Валеру:" Command="{Binding CreateCustomer}" CommandParameter="{Binding}" />
+            <Button Text="Сгенерировать Валеру:" Command="{Binding CreateCustomerCommand}" CommandParameter="{Binding}" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="40">
                 <Label Text="Покупатель: " />
                 <Label Text="{Binding CurrentCustomerVM.Name}" />
@@ -48,6 +49,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Text="Добавить продукт" Background="Gray" TextColor="White" FontAttributes="Bold"
+                    Command="{Binding CreateProductCommand}" CommandParameter="{x:Reference Page}" />
             <Label TextColor="LawnGreen" Text="{Binding Message}" />
         </StackLayout>
         <Label Grid.Row="1" Text="ZhabinEM 8K93" HorizontalOptions="Center" VerticalOptions="EndAndExpand"
