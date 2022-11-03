@@ -1,4 +1,4 @@
-﻿namespace GCL.UI.Windows
+﻿namespace GCL.UI.Calculator
 {
     using System;
 

@@ -1,4 +1,4 @@
-﻿namespace GCL.UI.ViewModels
+﻿namespace GCL.UI.Base
 {
     using System.Collections.Generic;
     using System.ComponentModel;

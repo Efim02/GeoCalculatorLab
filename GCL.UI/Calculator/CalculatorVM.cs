@@ -1,8 +1,8 @@
-﻿namespace GCL.UI.ViewModels
+﻿namespace GCL.UI.Calculator
 {
     using System.Windows.Input;
 
-    using GCL.UI.Commands;
+    using GCL.UI.Base;
 
     /// <summary>
     /// Вью-модель калькулятора.

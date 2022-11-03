@@ -1,8 +1,8 @@
-﻿namespace GCL.UI.Commands
+﻿namespace GCL.UI.Shop
 {
     using System;
 
-    using GCL.UI.ViewModels.Shop;
+    using GCL.UI.Base;
 
     /// <summary>
     /// Команда создать покупателя.

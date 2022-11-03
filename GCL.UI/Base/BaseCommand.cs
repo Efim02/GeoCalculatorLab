@@ -1,4 +1,4 @@
-﻿namespace GCL.UI.Commands
+﻿namespace GCL.UI.Base
 {
     using System;
     using System.Windows.Input;

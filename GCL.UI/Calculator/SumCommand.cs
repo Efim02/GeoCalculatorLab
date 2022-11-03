@@ -1,6 +1,6 @@
-﻿namespace GCL.UI.Commands
+﻿namespace GCL.UI.Calculator
 {
-    using GCL.UI.ViewModels;
+    using GCL.UI.Base;
 
     /// <summary>
     /// Команда суммирования.

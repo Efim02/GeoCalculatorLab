@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage x:Class="GCL.UI.Windows.Shop"
+<ContentPage x:Class="GCL.UI.Shop.ShopPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:shop="clr-namespace:GCL.UI.Shop;assembly=GCL.UI"
              mc:Ignorable="d"
-             xmlns:shop="clr-namespace:GCL.UI.ViewModels.Shop;assembly=GCL.UI"
              d:DataContext="{d:DesignInstance Type=shop:ShopVM, IsDesignTimeCreatable=False}">
     <ContentPage.Resources>
         <Style x:Key="ListLabel" TargetType="Label">

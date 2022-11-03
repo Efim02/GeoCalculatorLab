@@ -2,8 +2,7 @@
 {
     using System.Collections.ObjectModel;
 
-    using GCL.UI.ViewModels.Shop;
-    using GCL.UI.Windows;
+    using GCL.UI.Shop;
 
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
@@ -15,7 +14,7 @@
             InitializeComponent();
 
             //MainPage = new MainPage { BindingContext = new CalculatorVM() };
-            MainPage = new Shop
+            MainPage = new Shop.ShopPage
             {
                 BindingContext = new ShopVM
                 {

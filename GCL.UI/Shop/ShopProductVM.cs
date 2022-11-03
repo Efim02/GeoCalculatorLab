@@ -1,5 +1,7 @@
-﻿namespace GCL.UI.ViewModels.Shop
+﻿namespace GCL.UI.Shop
 {
+    using GCL.UI.Base;
+
     /// <summary>
     /// Продукт магазина.
     /// </summary>
