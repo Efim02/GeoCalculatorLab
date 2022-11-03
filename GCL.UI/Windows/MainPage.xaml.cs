@@ -1,4 +1,4 @@
-﻿namespace GCL.UI
+﻿namespace GCL.UI.Windows
 {
     using System;
 

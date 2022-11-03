@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage x:Class="GCL.UI.Windows.Shop"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:shop="clr-namespace:GCL.UI.ViewModels.Shop;assembly=GCL.UI"
+             d:DataContext="{d:DesignInstance Type=shop:ShopVM, IsDesignTimeCreatable=False}">
+    <ContentPage.Resources>
+        <Style x:Key="ListLabel" TargetType="Label">
+            <Style.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="FontAttributes" Value="Bold" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackLayout>
+            <Button Text="Сгенерировать Валеру:" Command="{Binding CreateCustomer}" CommandParameter="{Binding}" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="40">
+                <Label Text="Покупатель: " />
+                <Label Text="{Binding CurrentCustomerVM.Name}" />
+                <Label Text="{Binding CurrentCustomerVM.Money}" />
+            </StackLayout>
+            <ListView x:Name="MyListView" HasUnevenRows="true"
+                      ItemsSource="{Binding ProductVms}"
+                      SelectedItem="{Binding SelectedProductVM}"
+                      CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type shop:ShopProductVM}">
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label x:Name="TitleLabel" Text="{Binding Title}" FontSize="20"
+                                           Style="{StaticResource ListLabel}" />
+                                    <Label Text="{Binding Description}" FontSize="14" />
+                                    <Label Text="{Binding Price}" FontSize="12" TextColor="Gray"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label TextColor="LawnGreen" Text="{Binding Message}" />
+        </StackLayout>
+        <Label Grid.Row="1" Text="ZhabinEM 8K93" HorizontalOptions="Center" VerticalOptions="EndAndExpand"
+               FontSize="20"
+               TextColor="Orange" />
+    </Grid>
+</ContentPage>

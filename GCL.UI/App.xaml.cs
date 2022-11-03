@@ -1,6 +1,9 @@
 ﻿namespace GCL.UI
 {
-    using GCL.UI.ViewModels;
+    using System.Collections.ObjectModel;
+
+    using GCL.UI.ViewModels.Shop;
+    using GCL.UI.Windows;
 
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
@@ -11,7 +14,31 @@
         {
             InitializeComponent();
 
-            MainPage = new MainPage { BindingContext = new CalculatorVM() };
+            //MainPage = new MainPage { BindingContext = new CalculatorVM() };
+            MainPage = new Shop
+            {
+                BindingContext = new ShopVM
+                {
+                    ProductVms = new ObservableCollection<ShopProductVM>
+                    {
+                        new ShopProductVM
+                        {
+                            Title = "Samsung Phone", Description = "Better is better mobile technology",
+                            Price = 2500
+                        },
+                        new ShopProductVM
+                        {
+                            Title = "LG Phone", Description = "Maximum smoothness",
+                            Price = 2000
+                        },
+                        new ShopProductVM
+                        {
+                            Title = "TCL Phone", Description = "Better by price",
+                            Price = 1500
+                        },
+                    }
+                }
+            };
         }
 
         protected override void OnResume()
