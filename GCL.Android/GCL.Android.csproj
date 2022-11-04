@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Main\Paths.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +92,14 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GCL.BL\GCL.BL.csproj">
+      <Project>{1a1a3774-7dee-4704-8dfd-98fb951289c2}</Project>
+      <Name>GCL.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GCL.DB\GCL.DB.csproj">
+      <Project>{33caa0ea-ca6a-4b11-9579-f493614d9ecb}</Project>
+      <Name>GCL.DB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GCL.UI\GCL.UI.csproj">
       <Project>{EB3E536B-5C23-4CB3-8DBD-506C6B9EAE9E}</Project>
       <Name>GCL.UI</Name>

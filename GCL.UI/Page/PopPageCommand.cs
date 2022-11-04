@@ -7,21 +7,11 @@
     /// <summary>
     /// Команда вытащить открытую страницу, из стека навигации.
     /// </summary>
-    public class PopResultPageCommand : BaseCommand
+    public class PopPageCommand : BaseCommand
     {
-        private readonly bool _result;
-        private readonly IResultPage _resultPage;
-
-        public PopResultPageCommand(IResultPage resultPage, bool result)
-        {
-            _resultPage = resultPage;
-            _result = result;
-        }
-
         /// <inheritdoc />
         public override async void Execute(object _)
         {
-            _resultPage.IsSuccess = _result;
             await Application.Current.MainPage.Navigation.PopModalAsync(true);
         }
     }

@@ -1,14 +1,15 @@
 ﻿namespace GCL.UI.Base
 {
     using System;
+    using System.Threading.Tasks;
 
     using Xamarin.Forms.Internals;
 
     /// <summary>
-    /// Типизированная команда.
+    /// Типизированная асинхронная команда.
     /// </summary>
     /// <typeparam name="T"> Тип параметра. </typeparam>
-    public abstract class TypedBaseCommand<T> : BaseCommand
+    public abstract class TypedAsyncBaseCommand<T> : BaseCommand
     {
         private const string EXCEPTION = "ИСКЛЮЧЕНИЕ: ";
 
@@ -19,7 +20,7 @@
             return false;
         }
 
-        public sealed override void Execute(object parameter)
+        public sealed override async void Execute(object parameter)
         {
             try
             {
@@ -29,7 +30,7 @@
                         nameof(parameter));
                 }
 
-                Execute(typedParameter);
+                await Execute(typedParameter);
             }
             catch (Exception exception)
             {
@@ -43,6 +44,6 @@
             return true;
         }
 
-        protected abstract void Execute(T parameter);
+        protected abstract Task Execute(T parameter);
     }
 }

@@ -8,23 +8,14 @@
     /// <summary>
     /// Вью-модель для создания продукта.
     /// </summary>
-    public class CreateProductVM : BaseVM, IResultPage
+    public class CreateProductVM : BaseVM
     {
-        /// <summary>
-        /// Магазин.
-        /// </summary>
-        private readonly ShopVM _shopVM;
-
-        /// <inheritdoc cref="IsSuccess" />
-        private bool _isSuccess;
-
         public CreateProductVM(ShopVM shopVM)
         {
-            _shopVM = shopVM;
-            CancelCommand = new PopResultPageCommand(this, false);
-            CompleteCommand = new PopResultPageCommand(this, true);
+            CancelCommand = new PopPageCommand();
+            CompleteCommand = new CreateProductCommand(shopVM);
 
-            ProductVM = new ShopProductVM();
+            ProductVM = new ShopProductVM(shopVM);
         }
 
         /// <summary>
@@ -41,17 +32,5 @@
         /// Продукт создаваемый.
         /// </summary>
         public ShopProductVM ProductVM { get; }
-
-        /// <inheritdoc />
-        public bool IsSuccess
-        {
-            get => _isSuccess;
-            set
-            {
-                _isSuccess = value;
-                if (_isSuccess)
-                    _shopVM.ProductVms.Add(ProductVM);
-            }
-        }
     }
 }

@@ -9,16 +9,16 @@
     using Xamarin.Forms;
 
     /// <summary>
-    /// Команда создания продукта. Продукт будет добавлен в БД.
+    /// Команда удаления продукта.
     /// </summary>
-    public class CreateProductCommand : TypedAsyncBaseCommand<ShopProductVM>
+    public class RemoveProductCommand : TypedAsyncBaseCommand<ShopProductVM>
     {
         /// <summary>
         /// Магазин.
         /// </summary>
         private readonly ShopVM _shopVM;
 
-        public CreateProductCommand(ShopVM shopVM)
+        public RemoveProductCommand(ShopVM shopVM)
         {
             _shopVM = shopVM;
         }
@@ -28,10 +28,9 @@
         {
             var dbFacade = Injector.Get<IDbFacade>();
             var product = ProductMapper.Map(productVM);
-            await dbFacade.ProductRepository.Add(product).ConfigureAwait(false);
+            await dbFacade.ProductRepository.Remove(product).ConfigureAwait(false);
 
-            productVM.Id = product.Id;
-            _shopVM.ProductVms.Add(productVM);
+            _shopVM.ProductVms.Remove(productVM);
 
             await Application.Current.MainPage.Navigation.PopModalAsync(true);
         }

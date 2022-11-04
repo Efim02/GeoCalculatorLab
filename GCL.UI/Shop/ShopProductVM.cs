@@ -1,5 +1,7 @@
 ﻿namespace GCL.UI.Shop
 {
+    using System.Windows.Input;
+
     using GCL.UI.Base;
 
     /// <summary>
@@ -10,10 +12,20 @@
         /// <inheritdoc cref="IsSelected" />
         private bool _isSelected;
 
+        public ShopProductVM(ShopVM shopVM)
+        {
+            RemoveProductCommand = new RemoveProductCommand(shopVM);
+        }
+
         /// <summary>
         /// Описание.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Идентификатор.
+        /// </summary>
+        public int Id { get; set; }
 
         /// <summary>
         /// Выделен ли элемент.
@@ -32,13 +44,18 @@
         }
 
         /// <summary>
+        /// Стоимость.
+        /// </summary>
+        public double Price { get; set; }
+
+        /// <summary>
+        /// Команда удалить продукт.
+        /// </summary>
+        public ICommand RemoveProductCommand { get; }
+
+        /// <summary>
         /// Заголовок.
         /// </summary>
         public string Title { get; set; }
-
-        /// <summary>
-        /// Кол-во денег.
-        /// </summary>
-        public double Price { get; set; }
     }
 }

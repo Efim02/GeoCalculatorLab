@@ -1,5 +1,6 @@
 ﻿namespace GCL.UI.Shop
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
 
@@ -22,7 +23,7 @@
         {
             ProductVms = new ObservableCollection<ShopProductVM>();
             CreateCustomerCommand = new CreateCustomerCommand();
-            CreateProductCommand = new CreateProductCommand();
+            CreateProductCommand = new OpenPageCreatingCommand();
         }
 
         /// <summary>

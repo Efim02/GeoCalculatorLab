@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCL.Android", "GCL.Android\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GCL.UI", "GCL.UI\GCL.UI.csproj", "{EB3E536B-5C23-4CB3-8DBD-506C6B9EAE9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCL.BL", "GCL.BL\GCL.BL.csproj", "{1A1A3774-7DEE-4704-8DFD-98FB951289C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GCL.BL", "GCL.BL\GCL.BL.csproj", "{1A1A3774-7DEE-4704-8DFD-98FB951289C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCL.DB", "GCL.DB\GCL.DB.csproj", "{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,18 @@ Global
 		{1A1A3774-7DEE-4704-8DFD-98FB951289C2}.Release|iPhone.Build.0 = Release|Any CPU
 		{1A1A3774-7DEE-4704-8DFD-98FB951289C2}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{1A1A3774-7DEE-4704-8DFD-98FB951289C2}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Release|iPhone.Build.0 = Release|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{33CAA0EA-CA6A-4B11-9579-F493614D9ECB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

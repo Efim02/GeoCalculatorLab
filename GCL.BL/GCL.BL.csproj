@@ -5,4 +5,9 @@
     <BaseOutputPath>..\bin\</BaseOutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Shop\" />
+    <Folder Include="Main\" />
+  </ItemGroup>
+
 </Project>

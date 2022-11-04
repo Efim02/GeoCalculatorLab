@@ -1,12 +1,20 @@
 ﻿namespace GCL.Droid
 {
+    using System.Linq;
+
     using Android.App;
     using Android.Content.PM;
     using Android.OS;
     using Android.Runtime;
     using Android.Util;
 
+    using GCL.BL.Interface;
+    using GCL.BL.Main;
+    using GCL.DB.Collection;
+    using GCL.DB.Main;
+    using GCL.Droid.Main;
     using GCL.UI;
+    using GCL.UI.Shop;
 
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
@@ -32,7 +40,8 @@
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            var app = InitializeMainView();
+            LoadApplication(app);
 
             Log.Debug("OnCreate", "вызывается при создании активности.");
         }
@@ -56,7 +65,7 @@
         }
 
         protected override void OnStart()
-        {   
+        {
             base.OnStart();
             Log.Debug("OnStart", "вызывается когда активность уже создана и готова появиться на экране.");
         }
@@ -65,6 +74,42 @@
         {
             base.OnStop();
             Log.Debug("OnStop", "вызывается при исчезновении активности с экрана.");
+        }
+
+        /// <summary>
+        /// Инициализировать зависимости.
+        /// </summary>
+        private static void InitializeDependents()
+        {
+            Injector.RegisterSingleton<IPaths>(new Paths());
+            Injector.Register<IDbFacade, DbFacade>();
+        }
+
+        /// <summary>
+        /// Инициализация главного представления.
+        /// </summary>
+        /// <returns> Приложение. </returns>
+        private static App InitializeMainView()
+        {
+            InitializeDependents();
+
+            var shopVM = new ShopVM();
+            LoadProductsAsync(shopVM);
+            var page = new ShopPage { BindingContext = shopVM };
+            return new App { MainPage = page };
+        }
+
+        /// <summary>
+        /// Загрузить асинхронно продукты.
+        /// </summary>
+        /// <param name="shopVM"> Вью-модель магазина. </param>
+        private static async void LoadProductsAsync(ShopVM shopVM)
+        {
+            var dbFacade = Injector.Get<IDbFacade>();
+            var shopProducts = await dbFacade.ProductRepository.GetAll().ConfigureAwait(false);
+            var shopProductVms = shopProducts.Select(p => ProductMapper.Map(p, shopVM));
+
+            shopVM.ProductVms.AddRange(shopProductVms);
         }
     }
 }
