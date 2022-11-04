@@ -36,7 +36,17 @@
             <Label Text="Цена" Margin="20" />
             <Entry Grid.Column="1" Text="{Binding ProductVM.Price}" />
         </Grid>
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Фотография" Margin="20" />
+            <ImageButton Grid.Column="1" Source="{Binding ProductVM.ImageSource}"
+                         Aspect="AspectFit" WidthRequest="100" HeightRequest="100"
+                         Command="{Binding CapturePhotoCommand}" CommandParameter="{Binding ProductVM}"/>
+        </Grid>
+        <Grid Grid.Row="4" VerticalOptions="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />

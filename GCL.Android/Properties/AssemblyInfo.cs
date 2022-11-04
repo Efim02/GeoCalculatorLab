@@ -30,6 +30,9 @@ using Android.App;
 [assembly: UsesPermission(Manifest.Permission.Internet)]
 [assembly: UsesPermission(Manifest.Permission.WriteExternalStorage)]
 
+// Needed for Picking photo/video
+[assembly: UsesPermission(Manifest.Permission.ReadExternalStorage)]
+
 // Needed for Taking photo/video
 [assembly: UsesPermission(Manifest.Permission.Camera)]
 

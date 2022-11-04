@@ -12,15 +12,15 @@
         /// <summary>
         /// Контекст БД.
         /// </summary>
-        private readonly AppContext _appContext;
+        private readonly PhoneDbContext _phoneDbContext;
 
         /// <inheritdoc cref="DbFacade" />
         public DbFacade()
         {
             var dbPath = Injector.Get<IPaths>().GetDbPath();
-            _appContext = new AppContext(dbPath);
+            _phoneDbContext = new PhoneDbContext(dbPath);
 
-            ProductRepository = new ProductRepository(_appContext);
+            ProductRepository = new ProductRepository(_phoneDbContext);
         }
 
         /// <summary>
@@ -31,7 +31,7 @@
         /// <inheritdoc />
         public void Dispose()
         {
-            _appContext?.Dispose();
+            _phoneDbContext?.Dispose();
         }
     }
 }

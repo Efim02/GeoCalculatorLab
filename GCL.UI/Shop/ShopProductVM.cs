@@ -1,14 +1,19 @@
 ﻿namespace GCL.UI.Shop
 {
+    using System.IO;
     using System.Windows.Input;
 
     using GCL.UI.Base;
+
+    using Xamarin.Forms;
 
     /// <summary>
     /// Продукт магазина.
     /// </summary>
     public class ShopProductVM : BaseVM
     {
+        private byte[] _imageData;
+
         /// <inheritdoc cref="IsSelected" />
         private bool _isSelected;
 
@@ -26,6 +31,26 @@
         /// Идентификатор.
         /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Путь к файлу с фотографией.
+        /// </summary>
+        public byte[] ImageData
+        {
+            get => _imageData;
+            set
+            {
+                _imageData = value;
+                OnPropertyChanged(nameof(ImageSource));
+            }
+        }
+
+        /// <summary>
+        /// Источник данных для фотографии.
+        /// </summary>
+        public ImageSource ImageSource => ImageData!=null 
+            ? ImageSource.FromStream(() => new MemoryStream(ImageData))
+            : null;
 
         /// <summary>
         /// Выделен ли элемент.

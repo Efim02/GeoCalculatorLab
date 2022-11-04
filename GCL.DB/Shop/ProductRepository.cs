@@ -6,10 +6,9 @@
 
     using GCL.BL.Interface;
     using GCL.BL.Shop;
+    using GCL.DB.Main;
 
     using Microsoft.EntityFrameworkCore;
-
-    using AppContext = Main.AppContext;
 
     /// <summary>
     /// Репозиторий продуктов.
@@ -19,22 +18,22 @@
         /// <summary>
         /// Контекст приложения.
         /// </summary>
-        private readonly AppContext _appContext;
+        private readonly PhoneDbContext _phoneDbContext;
 
         /// <summary>
         /// Репозиторий продуктов.
         /// </summary>
-        /// <param name="appContext"> Контекст. </param>
-        public ProductRepository(AppContext appContext)
+        /// <param name="phoneDbContext"> Контекст. </param>
+        public ProductRepository(PhoneDbContext phoneDbContext)
         {
-            _appContext = appContext;
+            _phoneDbContext = phoneDbContext;
         }
 
         /// <inheritdoc />
         public async Task Add(Product product)
         {
-            await _appContext.Products.AddAsync(product).ConfigureAwait(false);
-            await _appContext.SaveChangesAsync().ConfigureAwait(false);
+            await _phoneDbContext.Products.AddAsync(product).ConfigureAwait(false);
+            await _phoneDbContext.SaveChangesAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -46,14 +45,14 @@
         /// <inheritdoc />
         public async Task<List<Product>> GetAll()
         {
-            return await _appContext.Products.ToListAsync().ConfigureAwait(false);
+            return await _phoneDbContext.Products.ToListAsync().ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public async Task Remove(Product product)
         {
-            _appContext.Products.Remove(product);
-            await _appContext.SaveChangesAsync().ConfigureAwait(false);
+            _phoneDbContext.Products.Remove(product);
+            await _phoneDbContext.SaveChangesAsync().ConfigureAwait(false);
         }
     }
 }

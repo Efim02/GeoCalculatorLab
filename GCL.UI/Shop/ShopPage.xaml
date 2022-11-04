@@ -44,7 +44,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image />
+                                    <Image Source="{Binding ImageSource}" Aspect="AspectFit" WidthRequest="100" HeightRequest="100"/>
                                     <StackLayout Grid.Column="1">
                                         <Label x:Name="TitleLabel" Text="{Binding Title}" FontSize="20"
                                                Style="{StaticResource ListLabel}" />

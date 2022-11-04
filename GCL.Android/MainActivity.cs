@@ -16,6 +16,8 @@
     using GCL.UI;
     using GCL.UI.Shop;
 
+    using Microsoft.EntityFrameworkCore;
+
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
 
@@ -40,6 +42,7 @@
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
+
             var app = InitializeMainView();
             LoadApplication(app);
 
@@ -92,6 +95,13 @@
         private static App InitializeMainView()
         {
             InitializeDependents();
+
+            // Применение миграций на имеющейся БД.
+            var dbPath = Injector.Get<IPaths>().GetDbPath();
+            using (var context = new PhoneDbContext(dbPath))
+            {
+                context.Database.Migrate();
+            }
 
             var shopVM = new ShopVM();
             LoadProductsAsync(shopVM);

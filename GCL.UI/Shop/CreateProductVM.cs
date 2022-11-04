@@ -1,5 +1,6 @@
 ﻿namespace GCL.UI.Shop
 {
+    using System;
     using System.Windows.Input;
 
     using GCL.UI.Base;
@@ -14,6 +15,7 @@
         {
             CancelCommand = new PopPageCommand();
             CompleteCommand = new CreateProductCommand(shopVM);
+            CapturePhotoCommand = new CapturePhotoCommand();
 
             ProductVM = new ShopProductVM(shopVM);
         }
@@ -22,6 +24,11 @@
         /// Команда отмены создания.
         /// </summary>
         public ICommand CancelCommand { get; }
+        
+        /// <summary>
+        /// Команда создать фотографию.
+        /// </summary>
+        public ICommand CapturePhotoCommand { get; }
 
         /// <summary>
         /// Команда завершения создания.

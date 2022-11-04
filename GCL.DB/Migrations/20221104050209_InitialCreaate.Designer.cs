@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GCL.DB.Migrations
 {
-    [DbContext(typeof(AppContext))]
+    [DbContext(typeof(PhoneDbContext))]
     [Migration("20221104050209_InitialCreaate")]
     partial class InitialCreaate
     {

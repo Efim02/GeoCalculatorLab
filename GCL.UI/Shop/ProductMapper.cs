@@ -17,7 +17,8 @@
                 Description = shopProductVM.Description,
                 Price = shopProductVM.Price,
                 Id = shopProductVM.Id,
-                Title = shopProductVM.Title
+                Title = shopProductVM.Title,
+                ImageData = shopProductVM.ImageData,
             };
         }
 
@@ -31,7 +32,8 @@
                 Description = shopProduct.Description,
                 Price = shopProduct.Price,
                 Id = shopProduct.Id,
-                Title = shopProduct.Title
+                Title = shopProduct.Title,
+                ImageData = shopProduct.ImageData,
             };
         }
     }

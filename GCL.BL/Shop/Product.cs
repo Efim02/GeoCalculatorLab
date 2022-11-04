@@ -24,5 +24,10 @@
         /// Заголовок.
         /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// Данные изображения.
+        /// </summary>
+        public byte[] ImageData { get; set; }
     }
 }

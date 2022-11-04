@@ -7,23 +7,22 @@
     /// <summary>
     /// Основной контекст БД для приложения.
     /// </summary>
-    public sealed class AppContext : DbContext
+    public sealed class PhoneDbContext : DbContext
     {
         /// <summary>
         /// Путь к файлу БД.
         /// </summary>
         private readonly string _path;
 
-        public AppContext()
+        public PhoneDbContext()
         {
         }
 
-        /// <inheritdoc cref="AppContext" />
+        /// <inheritdoc cref="PhoneDbContext" />
         /// <param name="path"> Путь к БД. </param>
-        public AppContext(string path)
+        public PhoneDbContext(string path)
         {
             _path = path;
-            Database.Migrate();
         }
 
         /// <summary>
