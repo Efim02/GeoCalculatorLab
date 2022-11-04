@@ -4,9 +4,9 @@
 
     using Xamarin.Forms;
 
-    public partial class MainPage : ContentPage
+    public partial class CalculatorView : ContentPage
     {
-        public MainPage()
+        public CalculatorView()
         {
             InitializeComponent();
         }

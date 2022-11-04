@@ -14,6 +14,9 @@
     using GCL.DB.Main;
     using GCL.Droid.Main;
     using GCL.UI;
+    using GCL.UI.Calculator;
+    using GCL.UI.Locator;
+    using GCL.UI.Main;
     using GCL.UI.Shop;
 
     using Microsoft.EntityFrameworkCore;
@@ -80,12 +83,47 @@
         }
 
         /// <summary>
+        /// Создание главное представления.
+        /// </summary>
+        /// <returns> Представление с закладками:). </returns>
+        private static TabbedMainPage CreateMainView()
+        {
+            var tabbedMainPage = new TabbedMainPage();
+
+            var calculatorVM = new CalculatorVM();
+            var calculatorView = new CalculatorView { BindingContext = calculatorVM, Title = "Калькулятор" };
+            tabbedMainPage.Children.Add(calculatorView);
+
+            var shopVM = new ShopVM();
+            LoadProductsAsync(shopVM);
+            var shopPage = new ShopPage { BindingContext = shopVM, Title = "Магазин" };
+            tabbedMainPage.Children.Add(shopPage);
+
+            var locatorVM = new LocatorVM();
+            var locatorView = new LocatorView { BindingContext = locatorVM, Title = "Локатор" };
+            tabbedMainPage.Children.Add(locatorView);
+
+            return tabbedMainPage;
+        }
+
+        private static void InitializeDatabase()
+        {
+            // Применение миграций на имеющейся БД.
+            var dbPath = Injector.Get<IPaths>().GetDbPath();
+            using (var context = new PhoneDbContext(dbPath))
+            {
+                context.Database.Migrate();
+            }
+        }
+
+        /// <summary>
         /// Инициализировать зависимости.
         /// </summary>
         private static void InitializeDependents()
         {
             Injector.RegisterSingleton<IPaths>(new Paths());
             Injector.Register<IDbFacade, DbFacade>();
+            Injector.RegisterSingleton<IGpsManager>(new GpsManager());
         }
 
         /// <summary>
@@ -95,18 +133,10 @@
         private static App InitializeMainView()
         {
             InitializeDependents();
+            InitializeDatabase();
 
-            // Применение миграций на имеющейся БД.
-            var dbPath = Injector.Get<IPaths>().GetDbPath();
-            using (var context = new PhoneDbContext(dbPath))
-            {
-                context.Database.Migrate();
-            }
-
-            var shopVM = new ShopVM();
-            LoadProductsAsync(shopVM);
-            var page = new ShopPage { BindingContext = shopVM };
-            return new App { MainPage = page };
+            var mainView = CreateMainView();
+            return new App { MainPage = mainView };
         }
 
         /// <summary>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:locator="clr-namespace:GCL.UI.Locator;assembly=GCL.UI"
+             x:Class="GCL.UI.Locator.LocatorView"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=locator:LocatorVM, IsDesignTimeCreatable=False}">
+    <ContentPage.Resources>
+        <locator:InvertBoolConverter x:Key="InvertBoolConverter" />
+        <Style x:Key="Label" TargetType="Label">
+            <Setter Property="Margin" Value="20" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="Background" Value="DimGray" />
+        </Style>
+        <Style x:Key="Value" TargetType="Label">
+            <Setter Property="Margin" Value="20" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <Frame IsVisible="{Binding IsPermitted, Converter={StaticResource InvertBoolConverter}}">
+            <Label FontSize="20" Text="Не было выдано разрешение для определения местоположения."
+                   TextColor="#3e3e3e" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Frame>
+        <StackLayout IsVisible="{Binding IsPermitted}">
+            <Grid>
+                <Label HorizontalOptions="Center" Text="{Binding IsEnabledGpsText}" Style="{StaticResource Label}"
+                       FontSize="30"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Широта" Style="{StaticResource Label}" />
+                <Label Grid.Column="1" Text="{Binding Latitude}" Style="{StaticResource Value}" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Долгота" Style="{StaticResource Label}" />
+                <Label Grid.Column="1" Text="{Binding Longitude}" Style="{StaticResource Value}" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Высота" Style="{StaticResource Label}" />
+                <Label Grid.Column="1" Text="{Binding Altitude}" Style="{StaticResource Value}" />
+            </Grid>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
