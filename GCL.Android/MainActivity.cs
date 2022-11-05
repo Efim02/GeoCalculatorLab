@@ -1,8 +1,10 @@
 ﻿namespace GCL.Droid
 {
+    using System;
     using System.Linq;
 
     using Android.App;
+    using Android.Content;
     using Android.Content.PM;
     using Android.OS;
     using Android.Runtime;
@@ -13,6 +15,7 @@
     using GCL.BL.Main;
     using GCL.DB.Main;
     using GCL.Droid.Main;
+    using GCL.Droid.Services;
     using GCL.UI;
     using GCL.UI.Calculator;
     using GCL.UI.GitHub;
@@ -43,6 +46,8 @@
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            StartServices();
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
@@ -155,6 +160,26 @@
             var shopProductVms = shopProducts.Select(p => ProductMapper.Map(p, shopVM));
 
             shopVM.ProductVms.AddRange(shopProductVms);
+        }
+
+        /// <summary>
+        /// Запустить сервисы.
+        /// </summary>
+        private void StartServices()
+        {
+            // Запускать внепроцессорную службу не нужно, запустится вместе с приложением.
+
+            if (ShopServiceUtils.IsShopServiceAvailable())
+                return;
+
+            var intent = new Intent(this, typeof(ShopService));
+            //// До Android 8.0.
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                StartService(intent);
+                return;
+            }
+            StartForegroundService(intent);
         }
     }
 }
