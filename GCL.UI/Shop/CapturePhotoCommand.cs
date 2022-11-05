@@ -20,7 +20,7 @@
     /// </summary>
     public class CapturePhotoCommand : TypedAsyncBaseCommand<ShopProductVM>
     {
-        private const string PROCESS_IMAGE = "Обработка изображения.";
+        private const string PROCESS_IMAGE = "Обработка изображения";
 
         /// <inheritdoc />
         protected override async Task Execute(ShopProductVM productVM)
