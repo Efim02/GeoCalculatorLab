@@ -8,13 +8,14 @@
     using Android.Runtime;
     using Android.Util;
 
+    using GCL.BL.Collection;
     using GCL.BL.Interface;
     using GCL.BL.Main;
-    using GCL.DB.Collection;
     using GCL.DB.Main;
     using GCL.Droid.Main;
     using GCL.UI;
     using GCL.UI.Calculator;
+    using GCL.UI.GitHub;
     using GCL.UI.Locator;
     using GCL.UI.Main;
     using GCL.UI.Shop;
@@ -102,6 +103,10 @@
             var locatorVM = new LocatorVM();
             var locatorView = new LocatorView { BindingContext = locatorVM, Title = "Локатор" };
             tabbedMainPage.Children.Add(locatorView);
+
+            var gitHubVM = new GitHubVM();
+            var gitHubView = new GitHubView { BindingContext = gitHubVM, Title = "GitHub" };
+            tabbedMainPage.Children.Add(gitHubView);
 
             return tabbedMainPage;
         }

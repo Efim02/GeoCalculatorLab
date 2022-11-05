@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GCL.UI.GitHub.GitHubView"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:gitHub="clr-namespace:GCL.UI.GitHub;assembly=GCL.UI"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=gitHub:GitHubVM, IsDesignTimeCreatable=False}">
+    <ContentPage.Resources>
+        <Style x:Key="Label" TargetType="Label">
+            <Setter Property="TextColor" Value="AliceBlue" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+        <Style x:Key="Value" TargetType="Label">
+            <Setter Property="TextColor" Value="#7fc9ff" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+        <gitHub:NullBoolConverter x:Key="NullBoolConverter"/>
+    </ContentPage.Resources>
+    <StackLayout Background="#313132">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.5*" />
+            </Grid.ColumnDefinitions>
+            <Entry Placeholder="Введи значение для поиска" PlaceholderColor="DarkGray"
+                   TextColor="#e88c2b" Text="{Binding Search}" />
+            <Button Grid.Column="1" HeightRequest="50" Text="Искать" TextColor="White" Command="{Binding SearchRepositoryCommand}"
+                    CommandParameter="{Binding Search}" />
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListView ItemsSource="{Binding RepVms}" SelectedItem="{Binding SelectedRepVM}"
+                      CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type gitHub:RepVM}">
+                        <ViewCell>
+                            <Grid Background="#3e3e3e" Margin="0, 2">
+                                <Label Text="{Binding Name}" TextColor="#ffffff" VerticalOptions="Center" LineBreakMode="WordWrap"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Grid.Column="1" BindingContext="{Binding SelectedRepVM}"
+                         IsVisible="{Binding ., Converter={StaticResource NullBoolConverter}}">
+                <Label HorizontalOptions="Center" Style="{StaticResource Label}" FontSize="Title" Text="{Binding Name}" />
+                <Grid BindingContext="{Binding OwnerVM}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding AvatarImageSource}" WidthRequest="75" HeightRequest="75" Margin="5" />
+                    <Label Grid.Column="1" Text="{Binding Login}" Style="{StaticResource Value}"
+                           HorizontalOptions="Center" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Описание: " Style="{StaticResource Label}" />
+                    <Label Grid.Column="1" Text="{Binding Description}" Style="{StaticResource Value}" />
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label Text="Обновлен последний раз: " Style="{StaticResource Label}" />
+                    <Label Grid.Row="1" Text="{Binding UpdateDate}" FontAttributes="Italic"
+                           Style="{StaticResource Value}" />
+                </Grid>
+                <Button Text="Перейти" TextColor="#e88c2b" Style="{StaticResource Label}" WidthRequest="100"
+                        HeightRequest="40"
+                        CommandParameter="{Binding}" Command="{Binding OpenBrowseRepositoryCommand}" />
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

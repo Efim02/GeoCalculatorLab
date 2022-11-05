@@ -1,4 +1,4 @@
-﻿namespace GCL.DB.Collection
+﻿namespace GCL.BL.Collection
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
